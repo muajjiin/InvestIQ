@@ -1,4 +1,3 @@
-
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -17,8 +16,8 @@ export const metadata: Metadata = {
   title: "InvestIQ",
   description: "smart investing insights.",
   icons: {
-    icon: "/favicon.ico",       // standard favicon
-    shortcut: "/favicon.ico",   // legacy browsers
+    icon: "/favicon.ico", // standard favicon
+    shortcut: "/favicon.ico", // legacy browsers
     apple: "/favicon.ico",
   },
 };
