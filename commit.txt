@@ -1,0 +1,314 @@
+commit 13a07287115675a140fd214020c8024d30e82316
+Author: elisha <korosenseimark40@gmail.com>
+Date:   Mon Sep 29 22:12:46 2025 +0600
+
+    reviwing the code
+
+diff --git a/app/favicon.ico b/app/favicon.ico
+deleted file mode 100644
+index 718d6fe..0000000
+Binary files a/app/favicon.ico and /dev/null differ
+diff --git a/app/layout.tsx b/app/layout.tsx
+index 7f12e4c..647e3c2 100644
+--- a/app/layout.tsx
++++ b/app/layout.tsx
+@@ -1,4 +1,3 @@
+-
+ import type { Metadata } from "next";
+ import { Geist, Geist_Mono } from "next/font/google";
+ import "./globals.css";
+@@ -17,8 +16,8 @@ export const metadata: Metadata = {
+   title: "InvestIQ",
+   description: "smart investing insights.",
+   icons: {
+-    icon: "/favicon.ico",       // standard favicon
+-    shortcut: "/favicon.ico",   // legacy browsers
++    icon: "/favicon.ico", // standard favicon
++    shortcut: "/favicon.ico", // legacy browsers
+     apple: "/favicon.ico",
+   },
+ };
+diff --git a/app/page.tsx b/app/page.tsx
+deleted file mode 100644
+index 21b686d..0000000
+--- a/app/page.tsx
++++ /dev/null
+@@ -1,103 +0,0 @@
+-import Image from "next/image";
+-
+-export default function Home() {
+-  return (
+-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
+-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+-        <Image
+-          className="dark:invert"
+-          src="/next.svg"
+-          alt="Next.js logo"
+-          width={180}
+-          height={38}
+-          priority
+-        />
+-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
+-          <li className="mb-2 tracking-[-.01em]">
+-            Get started by editing{" "}
+-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
+-              app/page.tsx
+-            </code>
+-            .
+-          </li>
+-          <li className="tracking-[-.01em]">
+-            Save and see your changes instantly.
+-          </li>
+-        </ol>
+-
+-        <div className="flex gap-4 items-center flex-col sm:flex-row">
+-          <a
+-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
+-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+-            target="_blank"
+-            rel="noopener noreferrer"
+-          >
+-            <Image
+-              className="dark:invert"
+-              src="/vercel.svg"
+-              alt="Vercel logomark"
+-              width={20}
+-              height={20}
+-            />
+-            Deploy now
+-          </a>
+-          <a
+-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
+-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+-            target="_blank"
+-            rel="noopener noreferrer"
+-          >
+-            Read our docs
+-          </a>
+-        </div>
+-      </main>
+-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
+-        <a
+-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+-          target="_blank"
+-          rel="noopener noreferrer"
+-        >
+-          <Image
+-            aria-hidden
+-            src="/file.svg"
+-            alt="File icon"
+-            width={16}
+-            height={16}
+-          />
+-          Learn
+-        </a>
+-        <a
+-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+-          target="_blank"
+-          rel="noopener noreferrer"
+-        >
+-          <Image
+-            aria-hidden
+-            src="/window.svg"
+-            alt="Window icon"
+-            width={16}
+-            height={16}
+-          />
+-          Examples
+-        </a>
+-        <a
+-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+-          target="_blank"
+-          rel="noopener noreferrer"
+-        >
+-          <Image
+-            aria-hidden
+-            src="/globe.svg"
+-            alt="Globe icon"
+-            width={16}
+-            height={16}
+-          />
+-          Go to nextjs.org →
+-        </a>
+-      </footer>
+-    </div>
+-  );
+-}
+diff --git a/components/Header.tsx b/components/Header.tsx
+index a025a2d..572024b 100644
+--- a/components/Header.tsx
++++ b/components/Header.tsx
+@@ -1,23 +1,29 @@
+-import Link from "next/link"
+-import Image from "next/image"
+-import NavItems from "./NavItems"
+-import UserDropdown from "./userDropdown"
++import Link from "next/link";
++import Image from "next/image";
++import NavItems from "./NavItems";
++import UserDropdown from "./userDropdown";
+ 
+ const Header = () => {
+   return (
+     <header className="stick top=0 header">
+       <div className="container header-wrapper">
+-        <Link href='/'>
+-          <Image src="/assets/icons/logo.svg" alt='Signalist Logo' width={140} height={32} className="h-8 w-auto cursor-pointer" />
++        <Link href="/">
++          <Image
++            src="/assets/icons/logo.svg"
++            alt="Signalist Logo"
++            width={140}
++            height={32}
++            className="h-8 w-auto cursor-pointer"
++          />
+         </Link>
+-        <nav className="hidden sm:block"  >
++        <nav className="hidden sm:block">
+           <NavItems />
+         </nav>
+-        {/* UserDromdown */}
++        {/* UserDropdown */}
+         <UserDropdown />
+       </div>
+     </header>
+-  )
+-}
++  );
++};
+ 
+-export default Header
++export default Header;
+diff --git a/components/NavItems.tsx b/components/NavItems.tsx
+index e41e64e..3f0cb03 100644
+--- a/components/NavItems.tsx
++++ b/components/NavItems.tsx
+@@ -1,29 +1,33 @@
+-'use client'
++"use client";
+ 
+ import { NAV_ITEMS } from "@/lib/constants";
+ import Link from "next/link";
+ import { usePathname } from "next/navigation";
+ 
+ const NavItems = () => {
+-  const pathname = usePathname()
++  const pathname = usePathname();
+ 
+   const isActive = (path: string) => {
+-    if (path === '/') return pathname === '/';
++    if (path === "/") return pathname === "/";
+ 
+     return pathname.startsWith(path);
+-  }
++  };
+ 
+   return (
+     <ul className="flex flex-col sm:flex-row p-2 gap-3 sm:gap-10 font-medium">
+       {NAV_ITEMS.map(({ href, label }) => (
+         <li key={href}>
+-          <Link href={href} className={`hover:text-yellow-500 transition-colors ${isActive(href) ? 'text-gray-100' : ''
+-            }`}>
++          <Link
++            href={href}
++            className={`hover:text-yellow-500 transition-colors ${
++              isActive(href) ? "text-gray-100" : ""
++            }`}
++          >
+             {label}
+           </Link>
+         </li>
+       ))}
+     </ul>
+-  )
+-}
+-export default NavItems
++  );
++};
++export default NavItems;
+diff --git a/components/userDropdown.tsx b/components/userDropdown.tsx
+index 5ac196a..6ee2617 100644
+--- a/components/userDropdown.tsx
++++ b/components/userDropdown.tsx
+@@ -1,4 +1,4 @@
+-'use client';
++"use client";
+ 
+ import {
+   DropdownMenu,
+@@ -7,8 +7,8 @@ import {
+   DropdownMenuLabel,
+   DropdownMenuSeparator,
+   DropdownMenuTrigger,
+-} from "@/components/ui/dropdown-menu"
+-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
++} from "@/components/ui/dropdown-menu";
++import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+ import { useRouter } from "next/navigation";
+ import { Button } from "@/components/ui/button";
+ import { LogOut } from "lucide-react";
+@@ -19,22 +19,25 @@ const UserDropdown = () => {
+ 
+   const handleSignOut = async () => {
+     router.push("/sign-in");
+-  }
++  };
+ 
+-  const user = { name: 'John', email: 'contact@jsmastery.com' };
++  const user = { name: "John", email: "contact@jsmastery.com" };
+ 
+   return (
+     <DropdownMenu>
+       <DropdownMenuTrigger asChild>
+-        <Button variant="ghost" className="flex items-center gap-3 text-gray-4 hover:text-yellow-500">
++        <Button
++          variant="ghost"
++          className="flex items-center gap-3 text-gray-4 hover:text-yellow-500"
++        >
+           <Avatar className="h-8 w-8">
+-            <AvatarImage src="https://github.com/shadcn.png" />
++            <AvatarImage src="https://avatars.githubusercontent.com/u/153423955?s=280&v=4" />
+             <AvatarFallback className="bg-yellow-500 text-yellow-900 text-sm font-bold">
+               {user.name[0]}
+             </AvatarFallback>
+           </Avatar>
+           <div className="hidden md:flex flex-col items-start">
+-            <span className='text-base font-medium text-gray-400'>
++            <span className="text-base font-medium text-gray-400">
+               {user.name}
+             </span>
+           </div>
+@@ -50,7 +53,7 @@ const UserDropdown = () => {
+               </AvatarFallback>
+             </Avatar>
+             <div className="flex flex-col">
+-              <span className='text-base font-medium text-gray-400'>
++              <span className="text-base font-medium text-gray-400">
+                 {user.name}
+               </span>
+               <span className="text-sm text-gray-500">{user.email}</span>
+@@ -58,7 +61,10 @@ const UserDropdown = () => {
+           </div>
+         </DropdownMenuLabel>
+         <DropdownMenuSeparator className="bg-gray-600" />
+-        <DropdownMenuItem onClick={handleSignOut} className="text-gray-100 text-md font-medium focus:bg-transparent focus:text-yellow-500 transition-colors cursor-pointer">
++        <DropdownMenuItem
++          onClick={handleSignOut}
++          className="text-gray-100 text-md font-medium focus:bg-transparent focus:text-yellow-500 transition-colors cursor-pointer"
++        >
+           <LogOut className="h-4 w-4 mr-2 hidden sm:block" />
+           Logout
+         </DropdownMenuItem>
+@@ -68,6 +74,6 @@ const UserDropdown = () => {
+         </nav>
+       </DropdownMenuContent>
+     </DropdownMenu>
+-  )
+-}
+-export default UserDropdown
++  );
++};
++export default UserDropdown;

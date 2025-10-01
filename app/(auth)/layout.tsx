@@ -1,0 +1,62 @@
+import Link from "next/link";
+import Image from "next/image";
+
+const layout = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <main className="auth-layout">
+      <section className="auth-left-section scrollbar-hide-deauflt">
+        <Link href="/" className="auth-logo">
+          <Image
+            src="/assets/icons/logo.png"
+            alt="investiq"
+            width={560}
+            height={128}
+            className="h-8 w-auto"
+          />
+        </Link>
+        <div className="pb-6 lg:pb-8 flex-1">{children}</div>
+      </section>
+
+      <section className="auth-right-section">
+        <div className="z-10 relative lg:mt-4 lg:mb-16">
+          <blockquote className="auth-blockquote">
+            “InvestIQ transformed my watchlist into a winning list. The insights
+            and alerts are incredibly accurate, giving me the confidence to make
+            smarter moves in the market.”
+          </blockquote>
+          <div className="flex items-center justify-between">
+            <div>
+              <cite className="auth-tetimonial-author">- Zubayer A.</cite>
+              <p className="max-md:text-xs text-gray-500">Retail Investor</p>
+            </div>
+
+            <div className="flex items-center gap-0.5">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <Image
+                  src="/assets/icons/star.svg"
+                  alt="Star"
+                  key={star}
+                  width={20}
+                  height={20}
+                  className="w-5 h-5"
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="flex-l relative">
+          <Image
+            src="/assets/images/1.png"
+            alt="dashboard Preview"
+            width={1800}
+            height={1350}
+            className="auth-dashboard-priview absolute"
+          />
+        </div>
+      </section>
+    </main>
+  );
+};
+
+export default layout;
