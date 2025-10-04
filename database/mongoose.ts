@@ -1,34 +1,37 @@
-import "dotenv/config";
 import mongoose from "mongoose";
 
-async function main() {
-  const uri = process.env.MONGODB_URI;
-  if (!uri) {
-    console.error("ERROR: MONGODB_URI must be set in .env");
-    process.exit(1);
+const MONGODB_URI = process.env.MONGODB_URI;
+
+declare global {
+  var mongooseCache: {
+    conn: typeof mongoose | null;
+    promise: Promise<typeof mongoose> | null;
+  };
+}
+
+let cached = global.mongooseCache;
+
+if (!cached) {
+  cached = global.mongooseCache = { conn: null, promise: null };
+}
+
+export const connectToDatabase = async () => {
+  if (!MONGODB_URI) throw new Error("MONGODB_URI must be set within .env");
+
+  if (cached.conn) return cached.conn;
+
+  if (!cached.promise) {
+    cached.promise = mongoose.connect(MONGODB_URI, { bufferCommands: false });
   }
 
   try {
-    const startedAt = Date.now();
-    await mongoose.connect(uri, { bufferCommands: false });
-    const elapsed = Date.now() - startedAt;
-
-    const dbName = mongoose.connection?.name || "(unknown)";
-    const host = mongoose.connection?.host || "(unknown)";
-
-    console.log(
-      `OK: Connected to MongoDB [db="${dbName}", host="${host}", time=${elapsed}ms]`,
-    );
-    await mongoose.connection.close();
-    process.exit(0);
+    cached.conn = await cached.promise;
   } catch (err) {
-    console.error("ERROR: Database connection failed");
-    console.error(err);
-    try {
-      await mongoose.connection.close();
-    } catch {}
-    process.exit(1);
+    cached.promise = null;
+    throw err;
   }
-}
 
-main();
+  console.log(`Connected to database ${process.env.NODE_ENV} - ${MONGODB_URI}`);
+
+  return cached.conn;
+};
