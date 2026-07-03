@@ -22,7 +22,7 @@
 - Modular, component-driven architecture
 ## **3. Installation & Setup**
 1. Clone the repository:
-`git clone https://github.com/yourusername/investiq.git cd investiq`
+`git clone https://github.com/minhaj-my/investiq.git cd investiq`
 
 2. Install dependencies:
 `bun install`
